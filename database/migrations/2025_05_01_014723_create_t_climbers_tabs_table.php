@@ -21,15 +21,15 @@ return new class extends Migration
             $table->string('address');
             $table->tinyInteger('gender')->comment('0 = wanita, 1 = pria');
             $table->integer('age');
-            $table->dateTime('start_climb');
-            $table->dateTime('end_climb');
+            $table->dateTime('start_climb')->unique();
+            $table->dateTime('end_climb')->unique();
             $table->string('file_ktp');
             $table->string('emergency_name');
             $table->string('emergency_phone');
             $table->unsignedInteger('m_status_tabs');
             $table->string('file_payment');
             $table->integer('count_friend');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

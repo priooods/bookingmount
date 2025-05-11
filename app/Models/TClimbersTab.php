@@ -25,4 +25,9 @@ class TClimbersTab extends Model
         'count_friend',
         'comment',
     ];
+
+    public function status()
+    {
+        return $this->hasOne(MStatusTab::class, 'id', 'm_status_tabs');
+    }
 }
