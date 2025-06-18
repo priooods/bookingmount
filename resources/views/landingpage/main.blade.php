@@ -16,7 +16,7 @@
                 </div>
                 <div class="hidden md:flex space-x-6 items-center">
                     <a href="/" class="text-gray-700 hover:text-green-600 font-semibold">Beranda</a>
-                    <a href="data_pendakian" class="text-gray-700 hover:text-green-600 font-semibold">Data Pendakian</a>
+                    <a href="pendakian" class="text-gray-700 hover:text-green-600 font-semibold">Data Pendakian</a>
                     <a href="panduan" class="text-gray-700 hover:text-green-600 font-semibold">Panduan Booking</a>
                     <a href="berita" class="text-gray-700 hover:text-green-600 font-semibold">Berita</a>
                     <a href="sop" class="text-gray-700 hover:text-green-600 font-semibold">SOP</a>
@@ -37,11 +37,12 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
-            <a href="#" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Home</a>
-            <a href="#" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">About</a>
-            <a href="#" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Services</a>
-            <a href="#" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Contact</a>
-            <a href="#" class="block py-2 text-white bg-green-600 text-center rounded hover:bg-green-700 font-semibold">Login</a>
+            <a href="/" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Beranda</a>
+            <a href="pendakian" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Data Pendakian</a>
+            <a href="panduan" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Panduan Booking</a>
+            <a href="berita" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">Berita</a>
+            <a href="sop" class="block py-2 text-gray-700 hover:text-green-600 font-semibold">SOP</a>
+            <a href="pengguna" class="block py-2 text-white bg-green-600 text-center rounded hover:bg-green-700 font-semibold">Login</a>
         </div>
     </nav>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
