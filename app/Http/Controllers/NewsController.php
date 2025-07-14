@@ -39,7 +39,10 @@ class NewsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $news = TNewsTab::where('id', $id)->first();
+        return view('landingpage.newsdetail', [
+            'news' => $news
+        ]);
     }
 
     /**

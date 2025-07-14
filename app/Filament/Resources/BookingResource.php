@@ -6,6 +6,7 @@ use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
 use App\Models\TClimbersTab;
+use App\Models\User;
 use Filament\Actions\StaticAction;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
@@ -41,8 +42,8 @@ class BookingResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('realname')->label('Nama Lengkap')->placeholder('Masukan Nama Lengkap')->required(),
-                TextInput::make('nik')->label('NIK Anda')->placeholder('Masukan NIK Anda')->numeric()->required(),
+            TextInput::make('realname')->label('Nama Lengkap')->placeholder('Masukan Nama Lengkap')->required(),
+            TextInput::make('nik')->label('NIK Anda')->placeholder('Masukan NIK Anda')->numeric()->required(),
                 TextInput::make('email')->label('Email Anda')->email()->placeholder('Masukan Email')->required(),
                 TextInput::make('phone')->label('No Handphone')->placeholder('Masukan No Handphone')->numeric()->tel()->required(),
                 Select::make('gender')
