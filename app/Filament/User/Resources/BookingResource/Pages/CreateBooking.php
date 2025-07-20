@@ -3,6 +3,7 @@
 namespace App\Filament\User\Resources\BookingResource\Pages;
 
 use App\Filament\User\Resources\BookingResource;
+use App\Models\MKuotaTabs;
 use App\Models\TClimbersTab;
 use Carbon\Carbon;
 use Filament\Notifications\Notification;
@@ -38,6 +39,40 @@ class CreateBooking extends CreateRecord
 
         $start = Carbon::parse($this->data['start_climb'])->format('Y-m-d');
         $end = Carbon::parse($this->data['end_climb'])->format('Y-m-d');
+
+        $findKuota = MKuotaTabs::where('m_status_tabs_id', 2)->first();
+        if (!isset($findKuota)) {
+            Notification::make()
+                ->warning()
+                ->title('Kuota tidak tersedia !')
+                ->body('Kuota mendaki belum tersedia')
+                ->persistent()
+                ->send();
+
+            $this->halt();
+        }
+
+        $climber = TClimbersTab::where('m_status_tabs', 4)->get();
+        $monthKuota = Carbon::parse($findKuota->dates)->format('Y-m');
+        $arr = array();
+        foreach ($climber as $key => $value) {
+            $dates = Carbon::parse($value['start_climb'])->format('Y-m');
+            if ($monthKuota === $dates) {
+                array_push($arr, $value);
+            }
+        }
+
+        if ($findKuota->kuota === count($arr)) {
+            Notification::make()
+                ->warning()
+                ->title('Kuota bulan ini penuh')
+                ->body('Kuota mendaki dibulan ini sudah penuh')
+                ->persistent()
+                ->send();
+
+            $this->halt();
+        }
+
         if ($start > $end) {
             Notification::make()
                 ->warning()
@@ -49,7 +84,7 @@ class CreateBooking extends CreateRecord
             $this->halt();
         }
 
-        if ($data['count_friend'] < 4) {
+        if ($this->data['count_friend'] < 4) {
             Notification::make()
                 ->warning()
                 ->title('Teman mendaki kurang')

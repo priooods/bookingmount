@@ -26,8 +26,16 @@ class TClimbersTab extends Model
         'comment',
     ];
 
+    protected $appends = ['adm'];
+
     public function status()
     {
         return $this->hasOne(MStatusTab::class, 'id', 'm_status_tabs');
+    }
+
+    public function getAdmAttribute()
+    {
+        $adm = MAdministrasiPayment::where('m_status_tabs_id', 2)->first();
+        return $adm->price;
     }
 }

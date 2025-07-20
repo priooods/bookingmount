@@ -15,6 +15,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
@@ -24,6 +25,9 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Validation\Rules\Unique;
+use Filament\Infolists\Components\Section as ComponentsSection;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 
 class BookingResource extends Resource
 {
@@ -31,6 +35,47 @@ class BookingResource extends Resource
     protected static ?string $navigationLabel = 'Booking';
     protected static ?string $breadcrumb = "Booking";
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist->schema(
+            [
+                ComponentsSection::make('Informasi Pendaki')
+                    ->description('Informasi Pendaki')
+                    ->schema([
+                        TextEntry::make('realname')->label('Nama Lengkap'),
+                        TextEntry::make('nik')->label('NIK'),
+                        TextEntry::make('email')->label('Email'),
+                        TextEntry::make('phone')->label('No Handphone'),
+                        TextEntry::make('gender')->label('Gender')->getStateUsing(fn($record) => $record->gender == 0 ? 'Wanita' : 'Pria'),
+                        TextEntry::make('age')->label('Usia'),
+                        TextEntry::make('address')->label('Alamat'),
+                    ])->columns(2),
+                ComponentsSection::make('Detail Pendakian')
+                    ->description('Informasi Detail Pendakian')
+                    ->schema([
+                        TextEntry::make('count_friend')->label('Total Teman Pendakian'),
+                        TextEntry::make('start_climb')->label('Tanggal Berangkat'),
+                        TextEntry::make('end_climb')->label('Tanggal Turun'),
+                        TextEntry::make('phone')->label('No Handphone'),
+                    ])->columns(2),
+                ComponentsSection::make('Kontak Darurat')
+                    ->description('Informasi Kontak Darurat')
+                    ->schema([
+                        TextEntry::make('emergency_name')->label('Nama Kontak Darurat'),
+                        TextEntry::make('emergency_phone')->label('No. Handphone Kontak Darurat'),
+                    ])->columns(2),
+                ComponentsSection::make('Kontak Darurat')
+                    ->description('Informasi Kontak Darurat')
+                    ->schema([
+                        TextEntry::make('comment')->label('Catatan'),
+                        ImageEntry::make('file_payment')->label('Bukti Pembayaran')->getStateUsing(function (TClimbersTab $record): string {
+                            return $record->file_payment;
+                        }),
+                    ])->columns(2),
+            ]
+        );
+    }
 
     public static function form(Form $form): Form
     {

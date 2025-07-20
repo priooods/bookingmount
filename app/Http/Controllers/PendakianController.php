@@ -10,9 +10,15 @@ class PendakianController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pendakian = TClimbersTab::where('m_status_tabs', 4)->limit(60)->orderBy('id', 'desc')->get();
+        $query = TClimbersTab::query();
+
+        if ($request->has('search')) {
+            $query->where('realname', 'like', '%' . $request->search . '%');
+        }
+
+        $pendakian = $query->where('m_status_tabs', 4)->limit(60)->orderBy('id', 'desc')->get();
         return view('landingpage.pendakian', [
             'pendakian' => $pendakian
         ]);

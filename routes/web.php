@@ -14,3 +14,4 @@ Route::resource('berita', NewsController::class);
 Route::resource('sop', SopController::class);
 Route::resource('panduan', PanduanController::class);
 Route::resource('pendakian', PendakianController::class);
+Route::get('pendakian', [PendakianController::class, 'index'])->name('pendakian.index');
