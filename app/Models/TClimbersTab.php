@@ -23,6 +23,7 @@ class TClimbersTab extends Model
         'm_status_tabs',
         'file_payment',
         'count_friend',
+        'm_adm_id',
         'comment',
     ];
 
@@ -31,6 +32,11 @@ class TClimbersTab extends Model
     public function status()
     {
         return $this->hasOne(MStatusTab::class, 'id', 'm_status_tabs');
+    }
+
+    public function biaya_adm()
+    {
+        return $this->hasOne(MAdministrasiPayment::class, 'id', 'm_adm_id');
     }
 
     public function getAdmAttribute()

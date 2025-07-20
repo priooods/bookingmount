@@ -3,6 +3,7 @@
 namespace App\Filament\User\Resources\BookingResource\Pages;
 
 use App\Filament\User\Resources\BookingResource;
+use App\Models\MAdministrasiPayment;
 use App\Models\MKuotaTabs;
 use App\Models\TClimbersTab;
 use Carbon\Carbon;
@@ -101,6 +102,8 @@ class CreateBooking extends CreateRecord
     {
         $data['m_status_tabs'] = 1;
         $data['created_by'] = auth()->user()->id;
+        $adm = MAdministrasiPayment::where('m_status_tabs_id', 2)->first();
+        $data['m_adm_id'] = $adm->id;
         return $data;
     }
 }

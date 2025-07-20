@@ -30,6 +30,10 @@ class ListReports extends ListRecords
                     Column::make('age')->heading('Usia'),
                     Column::make('start_climb')->heading('Berangkat'),
                     Column::make('end_climb')->heading('Pulang'),
+                    Column::make('end_climb')->heading('Pulang'),
+                    Column::make('m_adm_id')->heading('Biaya Adm')->formatStateUsing(
+                        fn($record) => $record?->biaya_adm?->price ?? 0
+                    ),
                 ])->withFilename('Report Pendaki'),
             ]),
             Actions\CreateAction::make(),
