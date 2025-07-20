@@ -1,4 +1,5 @@
-*
-!private/
-!public/
-!.gitignore
+!private
+public/form-berita
+public/form-booking
+public/form-panduan
+public/form-sop
