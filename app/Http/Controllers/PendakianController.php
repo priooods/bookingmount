@@ -12,7 +12,7 @@ class PendakianController extends Controller
      */
     public function index()
     {
-        $pendakian = TClimbersTab::where('m_status_tabs', 4)->limit(10)->get();
+        $pendakian = TClimbersTab::where('m_status_tabs', 4)->limit(60)->orderBy('id', 'desc')->get();
         return view('landingpage.pendakian', [
             'pendakian' => $pendakian
         ]);
