@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
+            $table->unsignedInteger('m_user_role_tabs_id');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('m_user_role_tabs_id')->references('id')->on('m_user_role_tabs')->cascadeOnDelete();
         });
     }
 

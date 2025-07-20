@@ -35,6 +35,30 @@ class CreateBooking extends CreateRecord
 
             $this->halt();
         }
+
+        $start = Carbon::parse($this->data['start_climb'])->format('Y-m-d');
+        $end = Carbon::parse($this->data['end_climb'])->format('Y-m-d');
+        if ($start > $end) {
+            Notification::make()
+                ->warning()
+                ->title('Tanggal turun ilegal !')
+                ->body('Tanggal turun anda salah, pastikan ulang')
+                ->persistent()
+                ->send();
+
+            $this->halt();
+        }
+
+        if ($data['count_friend'] < 4) {
+            Notification::make()
+                ->warning()
+                ->title('Teman mendaki kurang')
+                ->body('Pastikan anda memiliki teman minimal 3 orang')
+                ->persistent()
+                ->send();
+
+            $this->halt();
+        }
     }
 
 

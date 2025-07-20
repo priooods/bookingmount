@@ -22,7 +22,11 @@ class SopResource extends Resource
     protected static ?string $navigationLabel = 'SOP';
     protected static ?string $breadcrumb = "SOP";
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    public static function shouldRegisterNavigation(): bool
+    {
+        if (auth()->guard('admin')->user()->m_user_role_tabs_id == 1) return true;
+        else return false;
+    }
     public static function form(Form $form): Form
     {
         return $form

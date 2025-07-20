@@ -96,7 +96,7 @@ class BookingResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('realname')->label('Nama Anda'),
+            TextColumn::make('realname')->label('Nama Anda')->searchable(),
                 TextColumn::make('start_climb')->label('Tanggal Pendakian')->date(),
                 TextColumn::make('end_climb')->label('Selesai Pendakian')->date(),
                 TextColumn::make('m_status_tabs')->label('Status')->badge()->color(fn(string $state): string => match ($state) {

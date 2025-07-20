@@ -1,8 +1,8 @@
 @extends('landingpage.main')
 @section('main')
     <div class="py-3">
-        <div class="bg-gray-300 p-8 rounded-sm">
-            <p class="text-4xl font-semibold mb-10">Selamat Datang di Pendakian <br> Gunung Aseupan</p>
+        <div class="bg-[url(/storage/image/bg.jpg)] bg-cover p-8 rounded-sm h-80">
+            <p class="text-4xl font-semibold mb-10">Selamat Datang di website Pendakian <br> Gunung Aseupan</p>
             <a href="pengguna" class="rounded-lg bg-green-800 px-4 py-2 text-white font-semibold text-sm">Booking Now</a>
         </div>
         <div class="mt-16">

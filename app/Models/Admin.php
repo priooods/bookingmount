@@ -16,7 +16,13 @@ class Admin extends Authenticatable implements FilamentUser, HasName
         'fullname',
         'email',
         'password',
+        'm_user_role_tabs_id'
     ];
+
+    public function role()
+    {
+        return $this->hasOne(MUserRoleTabs::class, 'id', 'm_user_role_tabs_id');
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {
