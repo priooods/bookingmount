@@ -30,6 +30,7 @@ class UserPanelProvider extends PanelProvider
             ->brandName('PENDAKI')
             ->login()
             ->registration()
+            ->emailVerification()
             ->userMenuItems([
                 MenuItem::make()->label('Profile')->url(fn(): string => Profile::getUrl())->icon('heroicon-o-user')
             ])
