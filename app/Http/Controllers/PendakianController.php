@@ -16,7 +16,7 @@ class PendakianController extends Controller
         $query = TClimbersTab::query();
 
         if ($request->has('search')) {
-            $query->where('realname', 'like', '%' . $request->search . '%');
+            $query->where('nik', 'like', '%' . $request->search . '%')->orWhere('realname', 'like', '%' . $request->search . '%');
         }
         $kuota = MKuotaTabs::where('m_status_tabs_id', 2)->orderby('id', 'desc')->first();
         $pendakian = $query->where('m_status_tabs', 4)->limit(60)->orderBy('id', 'desc')->get();
