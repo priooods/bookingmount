@@ -3,6 +3,11 @@
     <div class="py-9">
         <h2 class="font-bold text-2xl uppercase text-center mb-10">Informasi Pendakian Terbaru</h2>
         <div class="flex justify-end mb-4 px-6">
+          <div class="mr-auto">
+            <p>Kuota Tersedia</p>
+            <p>Tgl {{ \Carbon\Carbon::parse($kuota->start_dates)->format('d F Y') }} - {{ \Carbon\Carbon::parse($kuota->end_dates)->format('d F Y') }}</p>
+            <p>Kuota {{ $kuota->kuota }}</p>
+          </div>
           <form method="GET" action="{{ route('pendakian.index') }}" class="flex items-center space-x-2">
               <input
                   type="text"

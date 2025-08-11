@@ -41,7 +41,7 @@ class CreateBooking extends CreateRecord
         $start = Carbon::parse($this->data['start_climb'])->format('Y-m-d');
         $end = Carbon::parse($this->data['end_climb'])->format('Y-m-d');
 
-        $findKuota = MKuotaTabs::where('m_status_tabs_id', 2)->first();
+        $findKuota = MKuotaTabs::where('m_status_tabs_id', 2)->orderBy('id', 'desc')->first();
         if (!isset($findKuota)) {
             Notification::make()
                 ->warning()
@@ -54,11 +54,11 @@ class CreateBooking extends CreateRecord
         }
 
         $climber = TClimbersTab::where('m_status_tabs', 4)->get();
-        $dates = Carbon::parse($findKuota->dates)->format('Y-m-d');
+        $start_dates = Carbon::parse($findKuota->start_dates)->format('Y-m-d');
         $arr = array();
         foreach ($climber as $key => $value) {
-            $dates = Carbon::parse($value['start_climb'])->format('Y-m');
-            if ($monthKuota === $dates) {
+            $sdates = Carbon::parse($value['start_climb'])->format('Y-m-d');
+            if ($start_dates < $sdates && $start_dates > $sdates) {
                 array_push($arr, $value);
             }
         }

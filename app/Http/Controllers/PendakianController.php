@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MKuotaTabs;
 use App\Models\TClimbersTab;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,11 @@ class PendakianController extends Controller
         if ($request->has('search')) {
             $query->where('realname', 'like', '%' . $request->search . '%');
         }
-
+        $kuota = MKuotaTabs::where('m_status_tabs_id', 2)->orderby('id', 'desc')->first();
         $pendakian = $query->where('m_status_tabs', 4)->limit(60)->orderBy('id', 'desc')->get();
         return view('landingpage.pendakian', [
-            'pendakian' => $pendakian
+            'pendakian' => $pendakian,
+            'kuota' => $kuota
         ]);
     }
 

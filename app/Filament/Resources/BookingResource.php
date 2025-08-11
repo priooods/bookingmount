@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
+use App\Models\MKuotaTabs;
 use App\Models\TClimbersTab;
 use App\Models\User;
 use Filament\Actions\StaticAction;
@@ -190,6 +191,10 @@ class BookingResource extends Resource
                     Action::make('published')
                         ->label('Setujui')
                         ->action(function ($record) {
+                    $kuota = MKuotaTabs::where('m_status_tabs_id', 2)->orderby('id', 'desc')->first();
+                    $kuota->update([
+                        'kuota' => $kuota->kuota - ($record->count_friend + 1)
+                    ]);
                             $record->update([
                                 'm_status_tabs' => 4,
                             ]);
