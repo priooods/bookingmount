@@ -54,7 +54,7 @@ class CreateBooking extends CreateRecord
         }
 
         $climber = TClimbersTab::where('m_status_tabs', 4)->get();
-        $monthKuota = Carbon::parse($findKuota->dates)->format('Y-m');
+        $dates = Carbon::parse($findKuota->dates)->format('Y-m-d');
         $arr = array();
         foreach ($climber as $key => $value) {
             $dates = Carbon::parse($value['start_climb'])->format('Y-m');
@@ -66,8 +66,8 @@ class CreateBooking extends CreateRecord
         if ($findKuota->kuota === count($arr)) {
             Notification::make()
                 ->warning()
-                ->title('Kuota bulan ini penuh')
-                ->body('Kuota mendaki dibulan ini sudah penuh')
+                ->title('Kuota saat ini penuh')
+                ->body('Mohon maaf kuota mendaki saat ini sudah penuh')
                 ->persistent()
                 ->send();
 
@@ -85,7 +85,7 @@ class CreateBooking extends CreateRecord
             $this->halt();
         }
 
-        if ($this->data['count_friend'] < 4) {
+        if ($this->data['count_friend'] < 3) {
             Notification::make()
                 ->warning()
                 ->title('Teman mendaki kurang')

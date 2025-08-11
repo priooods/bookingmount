@@ -8,7 +8,8 @@ class MKuotaTabs extends Model
 {
     protected $fillable = [
         'kuota',
-        'dates',
+        'start_dates',
+        'end_dates',
         'm_status_tabs_id'
     ];
 

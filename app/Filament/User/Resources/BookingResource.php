@@ -140,7 +140,7 @@ class BookingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(TClimbersTab::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc'))
+            ->query(TClimbersTab::where('created_by', auth()->user()->id)->orderBy('created_at', 'desc'))
             ->columns([
             TextColumn::make('realname')->label('Nama Anda')->searchable(),
                 TextColumn::make('start_climb')->label('Tanggal Pendakian')->date(),

@@ -37,7 +37,11 @@ class KuotaResource extends Resource
         return $form
             ->schema([
             TextInput::make('kuota')->label('Kuota Mendaki')->placeholder('Kuota Mendaki')->required(),
-            DatePicker::make('dates')->label('Waktu')
+            DatePicker::make('start_dates')->label('Start Date')
+                ->placeholder('Pilih Waktu')
+                ->firstDayOfWeek(7)->seconds(false)
+                ->closeOnDateSelection()->required(),
+            DatePicker::make('end_dates')->label('End Date')
                 ->placeholder('Pilih Waktu')
                 ->firstDayOfWeek(7)->seconds(false)
                 ->closeOnDateSelection()->required(),
@@ -49,7 +53,8 @@ class KuotaResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('kuota')->label('Kuota Mendaki'),
-                TextColumn::make('dates')->label('Waktu')->date(),
+            TextColumn::make('start_dates')->label('Start Date')->date(),
+            TextColumn::make('end_dates')->label('Start End')->date(),
                 TextColumn::make('m_status_tabs_id')->label('Status')->badge()->color(fn(string $state): string => match ($state) {
                     'DRAFT' => 'draft',
                     'PUBLISH' => 'success',
